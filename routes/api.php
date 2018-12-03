@@ -16,6 +16,8 @@ Route::post('register', 'API\RegisterController@register');
 
 Route::get('fac', 'API\HelicopterController@test');
 
+Route::get('users', 'API\HelicopterController@getUsersKey');
+
 Route::middleware('auth:api')->group( function () {
 	Route::resource('products', 'API\ProductController');
 });

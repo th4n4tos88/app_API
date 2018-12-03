@@ -64,6 +64,7 @@ class HelicopterController extends BaseController
         if (is_null($helicopter)) {
             return $this->sendError('Helicopter not found.');
         }
+
         return $this->sendResponse($helicopter->toArray(), 'Helicopter retrieved successfully.');
     }
 
@@ -125,10 +126,35 @@ class HelicopterController extends BaseController
     $request = $client->get('https://jsonplaceholder.typicode.com/users');
 
     $response = $request->getBody();
+
 echo $response;
+}
 
-    
+public function getUsersKey(){
 
+    $client = new \GuzzleHttp\Client();
+        $res = $client->request('GET', 'https://api.github.com/user', [
+            'auth' => ['th4n4tos88', 'ofi-0281-2011']
+        ]);
+        // echo $res->getStatusCode();
+        // "200"
+        // echo $res->getHeader('content-type');
+        // 'application/json; charset=utf8'
+        $stream = $res->getBody();
+        $contents = $stream->getContents();
+        $validate=(json_decode($contents , true));
+        
+        echo gettype($res);
+        echo $res->getBody();
+
+// {"type":"User"...'
+
+// Send an asynchronous request.
+// $request = new \GuzzleHttp\Psr7\Request('GET', 'http://httpbin.org');
+// $promise = $client->sendAsync($request)->then(function ($response) {
+//     echo 'I completed! ' . $response->getBody();
+// });
+// $promise->wait();
 }
 
 }
