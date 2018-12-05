@@ -13,7 +13,7 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::all()->sortByDesc("id");
         return $this->sendResponse($products->toArray(), 'Products retrieved successfully.');
     }
     /**
